@@ -77,18 +77,6 @@ class P2LDGANNode:
             deep_sampling=deep_sampling,
         )
 
-        # line_drawings = []
-
-        # for img in images:
-        #     ld_img = self.generate_line_drawing(
-        #         generator, img, deep_sampling=deep_sampling
-        #     )
-        #     line_drawings.append(ld_img)
-
-        # ld_images = torch.stack(line_drawings)
-        # print(f"{ld_images.shape = }")
-        # assert len(ld_images.shape) == 4
-
         return (ld_images,)
 
     @staticmethod

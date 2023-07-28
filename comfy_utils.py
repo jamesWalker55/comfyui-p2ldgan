@@ -31,14 +31,10 @@ def get_p2ldgan_model_path() -> Path:
 
     for search_path in search_paths:
         model_path = Path(search_path) / "p2ldgan_generator_200.pth"
-        print("Finding", model_path)
         if model_path.is_symlink():
             model_path = Path(os.path.join(model_path.parent, os.readlink(model_path)))
-            print("Symlink, replace", model_path)
         if model_path.exists():
-            print("Exists!")
             return model_path
-        print("Doesn't exist")
 
     raise FileNotFoundError(
         "Failed to find 'p2ldgan_generator_200.pth', please place it here: ComfyUI/custom_nodes/comfyui-p2ldgan/checkpoints"
