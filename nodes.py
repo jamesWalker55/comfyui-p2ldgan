@@ -41,7 +41,7 @@ class P2LDGANNode:
     INPUT_TYPES = lambda: {
         "required": {
             "images": ("IMAGE",),
-            "resolution": ("INT", {"default": 1024, "min": 1, "step": 1}),
+            "resolution": ("INT", {"default": 1024, "min": 0, "step": 1}),
             "deep_sampling": (["yes", "no"],),
         }
     }
