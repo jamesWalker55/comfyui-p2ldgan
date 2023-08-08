@@ -43,6 +43,7 @@ class P2LDGANNode:
             "images": ("IMAGE",),
             "resolution": ("INT", {"default": 1024, "min": 0, "step": 1}),
             "deep_sampling": (["yes", "no"],),
+            "invert_output": (["yes", "no"],),
         }
     }
 
@@ -53,11 +54,19 @@ class P2LDGANNode:
 
     FUNCTION = "execute"
 
-    def execute(self, images: torch.Tensor, resolution: int, deep_sampling: str):
+    def execute(
+        self,
+        images: torch.Tensor,
+        resolution: int,
+        deep_sampling: str,
+        invert_output: str,
+    ):
         assert isinstance(images, torch.Tensor)
         assert isinstance(resolution, int)
         assert deep_sampling in ("yes", "no")
+        assert invert_output in ("yes", "no")
         deep_sampling: bool = deep_sampling == "yes"
+        invert_output: bool = invert_output == "yes"
 
         generator = load_generator()
 
@@ -76,6 +85,9 @@ class P2LDGANNode:
             images,
             deep_sampling=deep_sampling,
         )
+
+        if invert_output:
+            ld_images = ld_images * -1 + 1
 
         return (ld_images,)
 
