@@ -41,8 +41,8 @@ class P2LDGANNode:
         "required": {
             "images": ("IMAGE",),
             "resolution": ("INT", {"default": 1024, "min": 0, "step": 1}),
-            "deep_sampling": (["yes", "no"],),
-            "invert_output": (["yes", "no"],),
+            "deep_sampling": (["yes", "no"], {"default": "yes"}),
+            "invert_output": (["yes", "no"], {"default": "yes"}),
         }
     }
 
