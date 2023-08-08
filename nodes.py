@@ -1,9 +1,8 @@
 import torch
 from torchvision import transforms
 
-from .image import resize_image_to_resolution, tensor_to_pil_image, pil_image_to_tensor
-
 from .comfy_utils import get_p2ldgan_model_path, model_management, register_node
+from .image import pil_image_to_tensor, resize_image_to_resolution, tensor_to_pil_image
 from .models import Generator
 
 generator: Generator | None = None
