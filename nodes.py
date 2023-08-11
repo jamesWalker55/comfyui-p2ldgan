@@ -99,6 +99,12 @@ class P2LDGANNode:
         # convert NHWC format to NCHW format
         images = images.permute(0, 3, 1, 2)
 
+        _, _, height, width = images.shape
+        if height % 16 not in (0, 15) or width % 16 not in (0, 15):
+            raise ValueError(
+                f"Input image dimensions must be divisible by 16! Got image size: {width}x{height}"
+            )
+
         # following code is derived from p2ldgan's test.py
         images = transforms.Normalize((0.5, 0.5, 0.5), (0.5, 0.5, 0.5))(images)
 
